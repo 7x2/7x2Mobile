@@ -48,28 +48,37 @@ public class player : MonoBehaviour
         }
         if (moveVec.x != 0 || moveVec.z != 0)
         {
-            //if (animateInfo.nameHash == Animator.StringToHash("Base Layer.stand"))
+            if (animateInfo.nameHash == Animator.StringToHash("Base Layer.stand"))
             {
-                animate.SetBool("stand", false);
-                animate.SetBool("walk", true);
-                //animate.Play("walk");
+                animate.SetInteger("a", 6);
+            }
+            if (animateInfo.nameHash == Animator.StringToHash("Base Layer.attack_1"))
+            {
+                animate.SetInteger("a", 3);
             }
         }
         else
         {
-            //if (animateInfo.nameHash == Animator.StringToHash("Base Layer.walk") && !animate.IsInTransition(0))
+            if (animateInfo.nameHash == Animator.StringToHash("Base Layer.walk"))
             {
-                animate.SetBool("walk", false);
-                animate.SetBool("stand", true);
-                Debug.Log(animateInfo.nameHash + " " + Animator.StringToHash("Base Layer.walk"));
-                //animate.Play("stand");
+                animate.SetInteger("a", 5);
+            }
+            if (animateInfo.nameHash == Animator.StringToHash("Base Layer.attack_1"))
+            {
+                animate.SetInteger("a", 2);
             }
         }
 
         if (Input.GetKey(KeyCode.F))
         {
-            animate.SetInteger("attack_1", 1);
-            //animate.Play("attack_1");
+            if (animateInfo.nameHash == Animator.StringToHash("Base Layer.stand"))
+            {
+                animate.SetInteger("a", 1);
+            }
+            if (animateInfo.nameHash == Animator.StringToHash("Base Layer.walk"))
+            {
+                animate.SetInteger("a", 4);
+            }
         }
 
         characterC.Move(transform.TransformDirection(moveVec));
